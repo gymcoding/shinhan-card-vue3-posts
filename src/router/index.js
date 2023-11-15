@@ -1,10 +1,14 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import {
+  createRouter,
+  createWebHistory,
+  createWebHashHistory,
+} from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
-import AboutView from '@/views/AboutView.vue';
+// import AboutView from '@/views/AboutView.vue';
 import PostCreateView from '@/views/posts/PostCreateView.vue';
 import PostDetailView from '@/views/posts/PostDetailView.vue';
 import PostEditView from '@/views/posts/PostEditView.vue';
-import PostListView from '@/views/posts/PostListView.vue';
+// import PostListView from '@/views/posts/PostListView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
 import NestedView from '@/views/nested/NestedView.vue';
 import NestedOneView from '@/views/nested/NestedOneView.vue';
@@ -23,12 +27,13 @@ const routes = [
   },
   {
     path: '/about',
-    component: AboutView,
+    // component: () => AboutView,
+    component: () => import('@/views/AboutView.vue'),
   },
   {
     path: '/posts',
     name: 'PostList',
-    component: PostListView,
+    component: () => import('@/views/posts/PostListView.vue'),
   },
   {
     path: '/posts/create',
@@ -75,7 +80,8 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory('/'),
+  // history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 });
 

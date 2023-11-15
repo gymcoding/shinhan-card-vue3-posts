@@ -13,13 +13,19 @@
         </RouterLink>
       </div>
     </div>
+    <hr class="my-4" />
+    <AppCard>
+      <PostDetailView :id="1" />
+    </AppCard>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import PostItem from '@/components/posts/PostItem.vue';
+import PostDetailView from './PostDetailView.vue';
 import { getPosts } from '@/api/posts';
+import AppCard from '@/components/AppCard.vue';
 
 const posts = ref([]);
 

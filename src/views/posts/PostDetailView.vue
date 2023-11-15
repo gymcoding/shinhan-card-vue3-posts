@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h2>제목</h2>
-    <p>내용</p>
-    <p class="text-muted">2020-01-01</p>
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+    <p class="text-muted">{{ post.createdAt }}</p>
     <hr class="my-4" />
     <div class="row g-2">
       <div class="col-auto">
@@ -28,11 +28,27 @@
 </template>
 
 <script setup>
-import { useRoute, useRouter } from 'vue-router';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { getPostById } from '@/api/posts';
 
-const route = useRoute();
+const props = defineProps({
+  id: {
+    type: [String, Number],
+    required: true,
+  },
+});
+
+// const route = useRoute();
 const router = useRouter();
-const id = route.params.id;
+const id = props.id;
+
+const post = ref({});
+const fetchPost = () => {
+  const data = getPostById(id);
+  post.value = { ...data }; // deep copy vs shallow copy
+};
+fetchPost();
 
 const goListPage = () => router.push({ name: 'PostList' });
 const goEditPage = () => router.push({ name: 'PostEdit', params: { id } });

@@ -17,36 +17,34 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <!-- <a class="nav-link active" aria-current="page" href="/">Home</a> -->
-
-              <RouterLink to="/" class="nav-link" active-class="active"
-                >Home</RouterLink
-              >
+              <RouterLink to="/" class="nav-link" active-class="active">
+                Home
+              </RouterLink>
             </li>
             <li class="nav-item">
-              <!-- <a class="nav-link" href="/about">About</a> -->
-              <RouterLink to="/about" class="nav-link" active-class="active"
-                >About</RouterLink
-              >
+              <RouterLink to="/about" class="nav-link" active-class="active">
+                About
+              </RouterLink>
+            </li>
+            <li class="nav-item">
+              <RouterLink to="/posts" class="nav-link" active-class="active">
+                게시글
+              </RouterLink>
             </li>
           </ul>
-          <form class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
+          <div class="d-flex">
+            <button class="btn btn-outline-light" type="button" @click="goPage">
+              글쓰기
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </nav>
   </header>
 </template>
 
-<script setup></script>
+<script setup>
+const goPage = () => {};
+</script>
 
 <style lang="scss" scoped></style>

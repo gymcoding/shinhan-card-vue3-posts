@@ -29,8 +29,9 @@ import AppCard from '@/components/AppCard.vue';
 
 const posts = ref([]);
 
-const fetchPosts = () => {
-  posts.value = getPosts();
+const fetchPosts = async () => {
+  const { data } = await getPosts();
+  posts.value = data;
 };
 fetchPosts();
 </script>

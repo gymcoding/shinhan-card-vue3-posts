@@ -44,8 +44,8 @@ const router = useRouter();
 const id = props.id;
 
 const post = ref({});
-const fetchPost = () => {
-  const data = getPostById(id);
+const fetchPost = async () => {
+  const { data } = await getPostById(id);
   post.value = { ...data }; // deep copy vs shallow copy
 };
 fetchPost();

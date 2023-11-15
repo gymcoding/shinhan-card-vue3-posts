@@ -2,9 +2,35 @@
   <div>
     <h2>게시글 목록</h2>
     <hr class="my-4" />
+    <div class="row g-3">
+      <div v-for="post in posts" :key="post.id" class="col-4">
+        <RouterLink :to="`/posts/${post.id}`">
+          <PostItem
+            :title="post.title"
+            :content="post.content"
+            :createdAt="post.createdAt"
+          />
+        </RouterLink>
+      </div>
+    </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue';
+import PostItem from '@/components/posts/PostItem.vue';
+import { getPosts } from '@/api/posts';
 
-<style lang="scss" scoped></style>
+const posts = ref([]);
+
+const fetchPosts = () => {
+  posts.value = getPosts();
+};
+fetchPosts();
+</script>
+
+<style scoped>
+a {
+  text-decoration: none;
+}
+</style>

@@ -44,7 +44,11 @@
 </template>
 
 <script setup>
-const goPage = () => {};
+import { useRouter } from 'vue-router';
+const router = useRouter();
+const goPage = () => {
+  router.push({ name: 'PostCreate' });
+};
 </script>
 
 <style lang="scss" scoped></style>

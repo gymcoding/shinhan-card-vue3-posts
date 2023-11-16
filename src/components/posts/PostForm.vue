@@ -8,6 +8,8 @@
         type="text"
         class="form-control"
         id="title"
+        v-focus
+        v-color="'blue'"
       />
     </div>
     <div class="mb-3">
@@ -32,6 +34,13 @@ defineProps({
   content: String,
 });
 defineEmits(['update:title', 'update:content']);
+
+// 로컬 디렉티브
+// const vFocus = {
+//   mounted(el) {
+//     el.focus();
+//   },
+// };
 </script>
 
 <style lang="scss" scoped></style>

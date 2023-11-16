@@ -1,8 +1,9 @@
 <template>
   <div>
-    <h2>게시글 등록</h2>
+    <h2 @click="visible = !visible" v-color="'red'">게시글 등록</h2>
     <hr class="my-4" />
     <PostForm
+      v-if="visible"
       v-model:title="form.title"
       v-model:content="form.content"
       @submit.prevent="save"
@@ -27,7 +28,7 @@ import { useRouter } from 'vue-router';
 import { createPost } from '@/api/posts';
 const router = useRouter();
 const goListPage = () => router.push({ name: 'PostList' });
-
+const visible = ref(true);
 const form = ref({
   title: null,
   content: null,

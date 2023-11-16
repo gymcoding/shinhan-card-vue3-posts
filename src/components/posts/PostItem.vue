@@ -3,13 +3,14 @@
     <div class="card-body">
       <h5 class="card-title">{{ title }}</h5>
       <p class="card-text">{{ content }}</p>
-      <p class="text-muted">{{ createdAt }}</p>
+      <p class="text-muted">{{ createdDate }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
-defineProps({
+import { computed, inject } from 'vue';
+const props = defineProps({
   title: {
     type: String,
     required: true,
@@ -21,6 +22,11 @@ defineProps({
     type: [String, Date, Number],
   },
 });
+
+const dayjs = inject('dayjs');
+const createdDate = computed(() =>
+  dayjs(props.createdAt).format('YYYY-MM-DD HH:mm:ss'),
+);
 </script>
 
 <style lang="scss" scoped></style>

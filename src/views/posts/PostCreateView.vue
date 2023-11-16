@@ -48,7 +48,6 @@ const form = ref({
 });
 const save = async () => {
   try {
-    debugger;
     await createPost({
       ...form.value,
       createdAt: Date.now(),

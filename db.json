@@ -7,18 +7,6 @@
       "createdAt": "2023-01-01"
     },
     {
-      "id": 2,
-      "title": "제목2",
-      "content": "내용2",
-      "createdAt": "2023-01-02"
-    },
-    {
-      "id": 3,
-      "title": "제목3",
-      "content": "내용3",
-      "createdAt": "2023-01-03"
-    },
-    {
       "id": 4,
       "title": "제목4",
       "content": "내용4",
@@ -33,8 +21,26 @@
     {
       "title": "게시글6번째",
       "content": "게시글6번째 내용",
-      "createdAt": 1700034752974,
+      "createdAt": "2023-01-06",
       "id": 6
+    },
+    {
+      "title": "게시글 수정 제목",
+      "content": "게시글 수정 내용 입니다.",
+      "createdAt": "2023-01-07",
+      "id": 7
+    },
+    {
+      "title": "Test",
+      "content": "Test!!",
+      "createdAt": 1700094599585,
+      "id": 8
+    },
+    {
+      "title": "TTTest",
+      "content": "TTest",
+      "createdAt": 1700094610252,
+      "id": 9
     }
   ],
   "comments": [

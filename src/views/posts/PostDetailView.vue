@@ -21,7 +21,7 @@
         </button>
       </div>
       <div class="col-auto">
-        <button class="btn btn-outline-danger">삭제</button>
+        <button class="btn btn-outline-danger" @click="remove">삭제</button>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { getPostById } from '@/api/posts';
+import { getPostById, deletePost } from '@/api/posts';
 
 const props = defineProps({
   id: {
@@ -49,6 +49,21 @@ const fetchPost = async () => {
   post.value = { ...data }; // deep copy vs shallow copy
 };
 fetchPost();
+
+const remove = async () => {
+  try {
+    if (confirm('삭제 하시겠습니까?') === false) {
+      return;
+    }
+    await deletePost(id);
+    router.push({ name: 'PostList' });
+  } catch (error) {
+    console.error(error);
+    // str -> console.log
+    // error -> console.error
+    // obj -> console.dir
+  }
+};
 
 const goListPage = () => router.push({ name: 'PostList' });
 const goEditPage = () => router.push({ name: 'PostEdit', params: { id } });

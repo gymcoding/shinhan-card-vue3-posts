@@ -18,7 +18,7 @@
         <button class="btn btn-primary" type="submit">수정</button>
       </template>
     </PostForm>
-    <AppAlert :show="showAlert" :message="alertMessage" :type="alertType" />
+    <AppAlert :items="alerts" />
   </div>
 </template>
 
@@ -52,16 +52,10 @@ const edit = async () => {
 };
 const goDetailPage = () => router.push({ name: 'PostDetail', params: { id } });
 
-const showAlert = ref(false);
-const alertMessage = ref('');
-const alertType = ref('');
+const alerts = ref([]);
 const vAlert = (message, type = 'success') => {
-  showAlert.value = true;
-  alertMessage.value = message;
-  alertType.value = type;
-  setTimeout(() => {
-    showAlert.value = false;
-  }, 3000);
+  alerts.value.push({ type, message });
+  setTimeout(() => alerts.value.shift(), 3000);
 };
 </script>
 

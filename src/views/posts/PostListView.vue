@@ -34,43 +34,13 @@
         </RouterLink>
       </div>
     </div>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item" :class="{ disabled: !(params._page > 1) }">
-          <a
-            class="page-link"
-            href="#"
-            aria-label="Previous"
-            @click="params._page--"
-          >
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li
-          v-for="page in pageCount"
-          :key="page"
-          class="page-item"
-          :class="{ active: page === params._page }"
-        >
-          <a class="page-link" href="#" @click="params._page = page">
-            {{ page }}
-          </a>
-        </li>
-        <li
-          class="page-item"
-          :class="{ disabled: !(params._page < pageCount) }"
-        >
-          <a
-            class="page-link"
-            href="#"
-            aria-label="Next"
-            @click="params._page++"
-          >
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+
+    <AppPagination
+      :current-page="params._page"
+      :page-count="pageCount"
+      @page="page => (params._page = page)"
+    />
+
     <hr class="my-4" />
     <AppCard>
       <PostDetailView :id="1" />
@@ -84,6 +54,7 @@ import PostItem from '@/components/posts/PostItem.vue';
 import PostDetailView from './PostDetailView.vue';
 import { getPosts } from '@/api/posts';
 import AppCard from '@/components/AppCard.vue';
+import AppPagination from '@/components/AppPagination.vue';
 
 const posts = ref([]);
 const params = ref({

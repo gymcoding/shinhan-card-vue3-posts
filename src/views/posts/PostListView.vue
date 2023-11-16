@@ -38,13 +38,13 @@
 
 <script setup>
 import { ref, computed, watch, watchEffect } from 'vue';
-import PostItem from '@/components/posts/PostItem.vue';
-import PostFilter from '@/components/posts/PostFilter.vue';
+// import PostItem from '@/components/posts/PostItem.vue';
+// import PostFilter from '@/components/posts/PostFilter.vue';
 import PostDetailView from './PostDetailView.vue';
 
 import { getPosts } from '@/api/posts';
-import AppCard from '@/components/AppCard.vue';
-import AppPagination from '@/components/AppPagination.vue';
+
+console.log('PostListView');
 
 const posts = ref([]);
 const params = ref({

@@ -3,6 +3,16 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from '@/router';
+import funcPlugins from './plugins/func';
+import objPlugins from './plugins/obj';
+import person from './plugins/person';
+import globalComponents from './plugins/global-components';
 
-createApp(App).use(router).mount('#app');
+const app = createApp(App);
+app.use(router);
+app.use(funcPlugins);
+app.use(objPlugins, { name: '짐코딩' });
+app.use(person);
+// app.use(globalComponents);
+app.mount('#app');
 import 'bootstrap/dist/js/bootstrap.js';

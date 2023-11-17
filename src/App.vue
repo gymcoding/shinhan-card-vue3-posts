@@ -4,7 +4,6 @@
   <TheView />
 
   <AppAlert :items="alerts" />
-  App.vue alerts: {{ alerts }}
 </template>
 
 <script setup>

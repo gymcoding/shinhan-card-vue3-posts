@@ -39,15 +39,8 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue';
-// import PostItem from '@/components/posts/PostItem.vue';
-// import PostFilter from '@/components/posts/PostFilter.vue';
-
+import { ref, computed } from 'vue';
 import { useAxios } from '@/composables/axios';
-
-console.log('PostListView');
-
-// const posts = ref([]);
 const params = ref({
   _sort: 'createdAt',
   _order: 'desc',
@@ -63,34 +56,12 @@ const {
   response,
 } = useAxios('/posts', { params });
 
-const totalCount = computed(() => {
-  return response.value?.headers['x-total-count'] || 0;
-});
-const pageCount = computed(() => {
-  return Math.ceil(totalCount.value / params.value._limit);
-});
-watch(pageCount, () => {
-  console.log('pageCount: ', pageCount.value);
-});
-
-// const loading = ref(false);
-// const error = ref(null);
-
-// const fetchPosts = async () => {
-//   try {
-//     loading.value = true;
-//     error.value = null;
-//     const { data, headers } = await getPosts(params.value);
-//     posts.value = data;
-//     totalCount.value = headers['x-total-count'];
-//   } catch (err) {
-//     error.value = err;
-//   } finally {
-//     loading.value = false;
-//   }
-// };
-// watchEffect(fetchPosts);
-// fetchPosts();
+const totalCount = computed(
+  () => response.value?.headers['x-total-count'] || 0,
+);
+const pageCount = computed(() =>
+  Math.ceil(totalCount.value / params.value._limit),
+);
 </script>
 
 <style scoped>

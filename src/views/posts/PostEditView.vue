@@ -18,7 +18,6 @@
         <button class="btn btn-primary" type="submit">수정</button>
       </template>
     </PostForm>
-    PostEditView.vue alerts: {{ alerts }}
   </div>
 </template>
 
@@ -51,7 +50,7 @@ const edit = async () => {
 };
 const goDetailPage = () => router.push({ name: 'PostDetail', params: { id } });
 
-const { alerts, vAlert, vSuccess } = useAlert();
+const { vAlert, vSuccess } = useAlert();
 </script>
 
 <style lang="scss" scoped></style>

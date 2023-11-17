@@ -1,76 +1,22 @@
 {
   "posts": [
     {
-      "title": "Test",
-      "content": "Test!!",
-      "createdAt": 1700094599585,
-      "id": 8
+      "title": "1",
+      "content": "2",
+      "createdAt": 1700187503783,
+      "id": 1
     },
     {
-      "title": "TTTest",
-      "content": "TTest",
-      "createdAt": 1700094610252,
-      "id": 9
-    },
-    {
-      "title": "PostForm 으로 분리했어요~!",
-      "content": "PostForm 으로 분리했어요~!\nPostForm 으로 분리했어요~!",
-      "createdAt": 1700099098820,
-      "id": 10
-    },
-    {
-      "title": "Vue3 실전편",
-      "content": "Vue3 실전편",
-      "createdAt": 1700116766163,
-      "id": 11
-    },
-    {
-      "title": "사과",
-      "content": "내용",
-      "createdAt": 1700116811325,
-      "id": 12
-    },
-    {
-      "title": "qweqw",
-      "content": "qwqwd",
-      "createdAt": 1700179941375,
-      "id": 13
-    },
-    {
-      "title": "wefw",
-      "content": "fwefwef",
-      "createdAt": 1700179999510,
-      "id": 14
+      "title": "24234",
+      "content": "234234",
+      "createdAt": 1700187609347,
+      "id": 2
     },
     {
       "title": "123123",
-      "content": "123123",
-      "createdAt": 1700180402124,
-      "id": 15
-    },
-    {
-      "title": "23123121",
-      "content": "433434",
-      "createdAt": 1700183233251,
-      "id": 16
-    },
-    {
-      "title": "23123121",
-      "content": "433434",
-      "createdAt": 1700183263203,
-      "id": 17
-    },
-    {
-      "title": "123123",
-      "content": "123123",
-      "createdAt": 1700183277520,
-      "id": 18
-    },
-    {
-      "title": "12312",
-      "content": "1324234",
-      "createdAt": 1700183288021,
-      "id": 19
+      "content": "222",
+      "createdAt": 1700187742601,
+      "id": 3
     }
   ],
   "comments": [

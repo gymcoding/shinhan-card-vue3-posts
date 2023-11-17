@@ -2,6 +2,7 @@ import axios from 'axios';
 import { isRef, ref, unref, watchEffect } from 'vue';
 
 axios.defaults.baseURL = import.meta.env.VITE_APP_API_URL;
+
 /**
  * Composables Point!
  * 1] 상태 저장 비즈니스 로직을 캡슐화한 것이다!
@@ -13,38 +14,59 @@ axios.defaults.baseURL = import.meta.env.VITE_APP_API_URL;
 // 2] 서버 콜하고
 // 3] 성공이면 원하는 거 진행~!
 // 4] 실패하면 error 상태 저장하고
-// 5] 마지막으로 loading false하고
-export const useAxios = (url, config = {}) => {
+// 5] 마지막으로 loading false 하고
+
+const defaultOptions = {
+  immediate: true,
+};
+
+export const useAxios = (url, config = {}, options = {}) => {
   const loading = ref(false);
   const error = ref(null);
   const data = ref(null);
   const response = ref(null);
 
-  loading.value = true;
-  error.value = null;
-
   const { params } = config; // ref -> watchEffect -> api call
+  const { immediate, onSuccess, onError } = {
+    ...defaultOptions,
+    ...options,
+  };
 
-  const execute = () => {
+  const execute = body => {
+    loading.value = true;
+    error.value = null;
+
     axios(url, {
+      ...config,
       params: unref(params),
+      data: typeof body === 'object' ? body : {},
     })
       .then(res => {
         response.value = res;
         data.value = res.data;
+        if (onSuccess) {
+          onSuccess(res);
+        }
       })
       .catch(err => {
         error.value = err;
+        if (onError) {
+          onError(err);
+        }
       })
       .finally(() => {
         loading.value = false;
       });
   };
+
   // params가 반응형 상태라면 watchEffect를 수행하여 관찰함!!!
+  console.log('params: ', params);
   if (isRef(params)) {
     watchEffect(execute);
   } else {
-    execute();
+    if (immediate) {
+      execute();
+    }
   }
 
   return {
@@ -52,5 +74,6 @@ export const useAxios = (url, config = {}) => {
     loading,
     error,
     data,
+    execute,
   };
 };

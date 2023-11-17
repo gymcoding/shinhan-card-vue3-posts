@@ -8,12 +8,17 @@ import objPlugins from './plugins/obj';
 import person from './plugins/person';
 import globalDirectives from './plugins/global-directives';
 import dayjs from './plugins/dayjs';
+import { createPinia } from 'pinia';
+
+// const pinia = createPinia();
 const app = createApp(App);
+console.log('다시생성 ㅠㅠ');
 app.use(router);
 app.use(funcPlugins);
 app.use(objPlugins, { name: '짐코딩' });
 app.use(person);
 app.use(dayjs);
 app.use(globalDirectives);
+app.use(createPinia());
 app.mount('#app');
 import 'bootstrap/dist/js/bootstrap.js';

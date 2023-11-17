@@ -21,15 +21,15 @@
         <button type="submit" class="btn btn-primary">저장</button>
       </template>
     </PostForm>
-    <AppAlert :items="alerts" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useAlert } from '@/composables/alert';
+// import { useAlert } from '@/composables/alert';
 import { useAxios } from '@/composables/axios';
+import { useAlertStore } from '@/stores/alert';
 
 const router = useRouter();
 const goListPage = () => router.push({ name: 'PostList' });
@@ -60,7 +60,7 @@ const save = () => {
   });
 };
 
-const { alerts, vAlert, vSuccess } = useAlert();
+const { vAlert, vSuccess } = useAlertStore();
 </script>
 
 <style lang="scss" scoped></style>

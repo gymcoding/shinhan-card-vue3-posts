@@ -25,7 +25,8 @@
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { getPostById, updatePost } from '@/api/posts';
-import { useAlert } from '@/composables/alert';
+// import { useAlert } from '@/composables/alert';
+import { useAlertStore } from '@/stores/alert';
 
 const route = useRoute();
 const router = useRouter();
@@ -50,7 +51,7 @@ const edit = async () => {
 };
 const goDetailPage = () => router.push({ name: 'PostDetail', params: { id } });
 
-const { vAlert, vSuccess } = useAlert();
+const { vAlert, vSuccess } = useAlertStore();
 </script>
 
 <style lang="scss" scoped></style>

@@ -2,7 +2,7 @@
   <div class="app-alert">
     <TransitionGroup name="slide">
       <div
-        v-for="({ type, message }, index) in items"
+        v-for="({ type, message }, index) in alerts"
         :key="index"
         class="alert"
         :class="typeClass(type)"
@@ -15,12 +15,12 @@
 </template>
 
 <script setup>
-defineProps({
-  items: {
-    type: Array,
-    default: () => [],
-  },
-});
+import { storeToRefs } from 'pinia';
+// import { useAlertStore } from '@/composables/alert';
+// import { useAlertStore } from '@/composables/alert';
+import { useAlertStore } from '@/stores/alert';
+// import 실수, storeToRefs 안함, logout
+const { alerts } = storeToRefs(useAlertStore());
 
 const typeClass = type => (type === 'error' ? 'alert-danger' : 'alert-primary');
 </script>

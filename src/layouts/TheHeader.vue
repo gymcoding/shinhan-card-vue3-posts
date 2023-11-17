@@ -2,7 +2,10 @@
   <header>
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">GYM CODING</a>
+        <a class="navbar-brand" href="#">
+          GYM CODING
+          {{ user?.username }}
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -44,11 +47,16 @@
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth';
+
 const router = useRouter();
 const goPage = () => {
   router.push({ name: 'PostCreate' });
 };
+
+const { user } = storeToRefs(useAuthStore());
 </script>
 
 <style lang="scss" scoped></style>

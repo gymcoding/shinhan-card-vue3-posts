@@ -10,10 +10,12 @@
     "db": "json-server --watch db.json --port 5000 "
   },
   "dependencies": {
+    "@vueuse/core": "^10.6.1",
     "axios": "^1.6.2",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.1",
     "dayjs": "^1.11.10",
+    "pinia": "^2.1.7",
     "vue": "^3.2.45",
     "vue-router": "^4.2.5"
   },

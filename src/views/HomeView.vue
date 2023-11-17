@@ -6,6 +6,8 @@
     <button class="btn btn-primary" @click="$router.push('/about')">
       About 으로 이동
     </button>
+    <p>{{ x }}, {{ y }}</p>
+    <input v-model="z" />
   </div>
 </template>
 
@@ -18,10 +20,13 @@ export default {
 </script>
 <script setup>
 import { inject } from 'vue';
+import { useMouse } from '@/hooks/useMouse';
 
 const person = inject('person');
 
 console.log('person: ', person);
+
+const { x, y, z } = useMouse();
 </script>
 
 <style lang="scss" scoped></style>

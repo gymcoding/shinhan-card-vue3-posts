@@ -38,9 +38,9 @@
         {{ post.title }}
       </option>
     </select>
-    <AppCard>
+    <!-- <AppCard>
       <PostDetailView :id="previewId" />
-    </AppCard>
+    </AppCard> -->
   </div>
 </template>
 

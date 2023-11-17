@@ -34,6 +34,11 @@
                 게시글
               </RouterLink>
             </li>
+            <li class="nav-item">
+              <RouterLink to="/mypage" class="nav-link" active-class="active">
+                마이페이지
+              </RouterLink>
+            </li>
           </ul>
           <div class="d-flex">
             <button class="btn btn-outline-light" type="button" @click="goPage">

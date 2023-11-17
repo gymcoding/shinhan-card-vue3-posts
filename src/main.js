@@ -12,7 +12,6 @@ import { createPinia } from 'pinia';
 
 // const pinia = createPinia();
 const app = createApp(App);
-console.log('다시생성 ㅠㅠ');
 app.use(router);
 app.use(funcPlugins);
 app.use(objPlugins, { name: '짐코딩' });

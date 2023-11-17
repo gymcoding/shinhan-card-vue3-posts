@@ -1,9 +1,11 @@
 <template>
   <div>
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.content }}</p>
+    <h3>id: {{ id }}</h3>
+    <h3>isEven: {{ isEven }}</h3>
+    <h2>{{ post?.title }}</h2>
+    <p>{{ post?.content }}</p>
     <p class="text-muted">
-      {{ $dayjs(post.createdAt).format('YYYY-MM-DD HH:mm:ss') }}
+      {{ $dayjs(post?.createdAt).format('YYYY-MM-DD HH:mm:ss') }}
     </p>
     <hr class="my-4" />
     <div class="row g-2">
@@ -30,9 +32,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { getPostById, deletePost } from '@/api/posts';
+import { deletePost } from '@/api/posts';
+import { useAxios } from '@/composables/axios';
+import { watch } from 'vue';
+import { watchEffect } from 'vue';
+import { computed } from 'vue';
+import { useNumber } from '@/composables/number';
+import { toRef } from 'vue';
+import { toRefs } from 'vue';
 
 const props = defineProps({
   id: {
@@ -40,24 +48,21 @@ const props = defineProps({
     required: true,
   },
 });
+// const id = props.id; // id = number Reactive API [x]
+// const id = toRef(props, 'id'); // id = Reactive API [0]
+const { idRef } = toRefs(props); // id = Reactive API [0]
+const { isEven } = useNumber(idRef);
 
-// const route = useRoute();
 const router = useRouter();
-const id = props.id;
-
-const post = ref({});
-const fetchPost = async () => {
-  const { data } = await getPostById(id);
-  post.value = { ...data }; // deep copy vs shallow copy
-};
-fetchPost();
+const url = computed(() => `/posts/${props.id}`);
+const { data: post } = useAxios(url); // url === ref
 
 const remove = async () => {
   try {
     if (confirm('삭제 하시겠습니까?') === false) {
       return;
     }
-    await deletePost(id);
+    await deletePost(props.id);
     router.push({ name: 'PostList' });
   } catch (error) {
     console.error(error);
@@ -68,7 +73,8 @@ const remove = async () => {
 };
 
 const goListPage = () => router.push({ name: 'PostList' });
-const goEditPage = () => router.push({ name: 'PostEdit', params: { id } });
+const goEditPage = () =>
+  router.push({ name: 'PostEdit', params: { id: props.id } });
 </script>
 
 <style lang="scss" scoped></style>

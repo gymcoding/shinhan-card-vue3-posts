@@ -21,6 +21,7 @@ const defaultOptions = {
 };
 
 export const useAxios = (url, config = {}, options = {}) => {
+  // string === typeof url
   const loading = ref(false);
   const error = ref(null);
   const data = ref(null);
@@ -36,7 +37,7 @@ export const useAxios = (url, config = {}, options = {}) => {
     loading.value = true;
     error.value = null;
 
-    axios(url, {
+    axios(unref(url), {
       ...config,
       params: unref(params),
       data: typeof body === 'object' ? body : {},
@@ -61,7 +62,7 @@ export const useAxios = (url, config = {}, options = {}) => {
 
   // params가 반응형 상태라면 watchEffect를 수행하여 관찰함!!!
   console.log('params: ', params);
-  if (isRef(params)) {
+  if (isRef(params) || isRef(url)) {
     watchEffect(execute);
   } else {
     if (immediate) {

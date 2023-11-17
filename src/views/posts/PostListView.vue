@@ -15,11 +15,12 @@
     <template v-else>
       <div class="row g-3">
         <div v-for="post in posts" :key="post.id" class="col-4">
-          <RouterLink :to="`/posts/${post.id}`">
+          <RouterLink :to="`/posts/${post.id}`" @click.prevent>
             <PostItem
               :title="post.title"
               :content="post.content"
               :createdAt="post.createdAt"
+              @preview.stop="previewId = post.id"
             />
           </RouterLink>
         </div>
@@ -32,15 +33,24 @@
       />
     </template>
     <hr class="my-4" />
-    <!-- <AppCard>
-      <PostDetailView :id="1" />
-    </AppCard> -->
+    <select v-model="previewId" class="form-control" name="" id="">
+      <option v-for="post in posts" :value="post.id" :key="post.id">
+        {{ post.title }}
+      </option>
+    </select>
+    <AppCard>
+      <PostDetailView :id="previewId" />
+    </AppCard>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue';
 import { useAxios } from '@/composables/axios';
+import PostDetailView from './PostDetailView.vue';
+
+const previewId = ref(1);
+
 const params = ref({
   _sort: 'createdAt',
   _order: 'desc',

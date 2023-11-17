@@ -5,6 +5,9 @@
       <p class="card-text">{{ content }}</p>
       <p class="text-muted">{{ createdDate }}</p>
     </div>
+    <button class="btn btn-primary btn-sm m-3" @click.stop="$emit('preview')">
+      preview
+    </button>
   </div>
 </template>
 
@@ -22,6 +25,7 @@ const props = defineProps({
     type: [String, Date, Number],
   },
 });
+defineEmits(['preview']);
 
 const dayjs = inject('dayjs');
 const createdDate = computed(() =>

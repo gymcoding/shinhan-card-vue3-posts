@@ -2,6 +2,8 @@
   <div>
     <h2 @click="visible = !visible" v-color="'red'">게시글 등록</h2>
     <hr class="my-4" />
+    <p v-if="loading">...Loading</p>
+    <p v-if="error">error: {{ error }}</p>
     <PostForm
       v-if="visible"
       v-model:title="form.title"
@@ -35,17 +37,25 @@ const form = ref({
   title: null,
   content: null,
 });
+
+const loading = ref(false);
+const error = ref(null);
 const save = async () => {
   try {
+    loading.value = true;
+    error.value = null;
     await createPost({
       ...form.value,
       createdAt: Date.now(),
     });
     vSuccess('등록이 완료되었습니다!');
     // router.push({ name: 'PostList' });
-  } catch (error) {
-    console.error(error);
-    vAlert(error.message);
+  } catch (err) {
+    console.error(err);
+    error.value = err;
+    vAlert(err.message);
+  } finally {
+    loading.value = false;
   }
 };
 
